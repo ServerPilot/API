@@ -273,9 +273,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 $ curl https://api.serverpilot.io/v1/sysusers \
    -u {CLIENTID}:{APIKEY} \
    -H "Content-Type: application/json" \
-   -d '{"serverid": "FqHWrrcUfRI18F0l", \
-        "name": "derek", \
-        "password": "hlZkUk"}'
+   -d '{"serverid": "FqHWrrcUfRI18F0l", "name": "derek", "password": "hlZkUk"}'
 ```
 
 ```json
@@ -426,11 +424,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 $ curl https://api.serverpilot.io/v1/apps \
    -u {CLIENTID}:{APIKEY} \
    -H "Content-Type: application/json" \
-   -d '{ \
-          "name": "gallery", \
-          "sysuserid": "RvnwAIfuENyjUVnl", \
-          "domains": ["myartgallery.com", "www.myartgallery.com"], \
-       }'
+   -d '{"name": "gallery", "sysuserid": "RvnwAIfuENyjUVnl", "domains": ["myartgallery.com", "www.myartgallery.com"]}'
 ```
 
 ```json
@@ -532,11 +526,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
    -u {CLIENTID}:{APIKEY} \
    -H "Content-Type: application/json" \
-   -d '{ \
-         "key": "-----BEGIN PRIVATE KEY----- ...", \
-         "cert": "-----BEGIN CERTIFICATE----- ...", \
-         "cacerts": "-----BEGIN CERTIFICATE----- ..." \
-       }'
+   -d '{"key": "-----BEGIN PRIVATE KEY-----", "cert": "-----BEGIN CERTIFICATE-----", "cacerts": "-----BEGIN CERTIFICATE-----"}'
 ```
 
 ```json
@@ -612,14 +602,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 $ curl https://api.serverpilot.io/v1/dbs \
    -u {CLIENTID}:{APIKEY} \
    -H "Content-Type: application/json" \
-   -d '{ \
-          "appid": "nlcN0TwdZAyNEgdp", \
-          "name": "gallerydb", \
-          "user": { \
-              "name": "arturo", \
-              "password": "8apNPT" \
-          }
-       }'
+   -d '{"appid": "nlcN0TwdZAyNEgdp", "name": "gallerydb", "user": {"name": "arturo", "password": "8apNPT"}}'
 ```
 
 ```json
