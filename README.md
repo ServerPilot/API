@@ -420,7 +420,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 | `name`      | `string`       | **Required**. The nickname of the Server.
 | `sysuserid` | `string`       | **Required**. The System User that will "own" this App. Since every System User is specific to a Server, this implicitly determines on which Server the App will be created.
 | `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4` or `php5.5`.
-| `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*.
+| `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
 
 ```
 $ curl https://api.serverpilot.io/v1/apps \
@@ -495,7 +495,7 @@ $ curl https://api.serverpilot.io/v1/apps/B1w7yc1tfUPQLIKS \
 | Name      | Type           | Description
 | --------- | :------------: | :---------------------------------------
 | `runtime` | `string`       | The PHP runtime for an App. Choose from `php5.4` or `php5.5`.
-| `domains` | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*.
+| `domains` | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
