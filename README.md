@@ -23,22 +23,6 @@ requests made over plain HTTP are not supported.
 https://api.serverpilot.io/v1
 ```
 
-<!--
-## Summary of Resource URL Patterns
-```
-/servers
-/servers/:id
-/sysusers
-/sysusers/:id
-/apps
-/apps/:id
-/apps/:id/ssl
-/dbs
-/dbs/:id
-/actions/:id
-```
--->
-
 # Resources & Methods
 
 **Servers**
@@ -122,7 +106,7 @@ $ curl https://api.serverpilot.io/v1/servers \
 
 | Name   | Type     | Description
 | ------ | :------: | :---------------------------------------:
-| `name` | `string` | **Required**. The nickname of the Server.
+| `name` | `string` | **Required**. The nickname of the Server. Length must be between 1 and 255 characters. Characters can be of lowercase ascii letters, digits, a period, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter and end with either a lowercase ascii letter or digit. `www.store2` is a valid name, while `.org.company` nor `www.blog-` are.
 
 ```
 $ curl https://api.serverpilot.io/v1/servers \
@@ -192,7 +176,7 @@ $ curl https://api.serverpilot.io/v1/servers/4zGDDO2xg30yEeum \
 | Name          | Type     | Description
 | ------------- | :------: | :---------------------------------------
 | `firewall`    | `bool`   | Describes the "enabled" state of the Server firewall. `false` means the firewall is not enabled.
-| `autoupdates` | `bool`   | Describes the "enabled" state of automatic system updates. `false` means automatic system updates are not enabled,
+| `autoupdates` | `bool`   | Describes the "enabled" state of automatic system updates. `false` means automatic system updates are not enabled.
 
 ```
 $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
@@ -266,8 +250,8 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 | Name       | Type     | Description
 | ---------- | :------: | :---------------------------------------
 | `serverid` | `string` | **Required**. The id of the Server.
-| `name`     | `string` | **Required**. The name of the System User.
-| `password` | `string` | The password of the System User. If user has no password, they will not be able to log in.
+| `name`     | `string` | **Required**. The name of the System User. Length must be between 3 and 32 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter. `user-32` is a valid name, while `3po` is not.
+| `password` | `string` | The password of the System User. If user has no password, they will not be able to log in. No leading or trailing whitespace is allowed and the password must be at least 8 characters long.
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers \
@@ -332,7 +316,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
 
 | Name       | Type     | Description
 | ---------- | :------: | :----------
-| `password` | `string` | **Required**. The new password of the App user.
+| `password` | `string` | **Required**. The new password of the System User. If user has no password, they will not be able to log in. No leading or trailing whitespace is allowed and the password must be at least 8 characters long.
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
@@ -415,7 +399,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 
 | Name        | Type           | Description
 | ----------- | :------------: | :---------------------------------------
-| `name`      | `string`       | **Required**. The nickname of the App.
+| `name`      | `string`       | **Required**. The nickname of the App. Length must be between 3 and 30 characters. Characters can be of lowercase ascii letters and digits.
 | `sysuserid` | `string`       | **Required**. The System User that will "own" this App. Since every System User is specific to a Server, this implicitly determines on which Server the App will be created.
 | `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4` or `php5.5`.
 | `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
@@ -559,7 +543,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
 
 ## Databases
 
-Databases are MySQL databases.
+Databases are MySQL databases. Each Database is associated with an App.
 
 There is only one Database User for each Database.
 
@@ -593,7 +577,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 | Name             | Type     | Description
 | ---------------- | :------: | :---------------------------------------
 | `appid`          | `string` | **Required**. The id of the App.
-| `name`           | `string` | **Required**. The name of the database.
+| `name`           | `string` | **Required**. The name of the database. Length must be between 3 and 64 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-').
 | `user`           | `object` | **Required**. A JSON object containing `name` and `password` name/value pairs.
 | `user[name]`     | `string` | **Required**. The name of the Database User.
 | `user[password]` | `string` | **Required**. The password of the Database User.
@@ -669,7 +653,7 @@ $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
 | ---------------- | :------: | :----------
 | `user`           | `object` | **Required**. A JSON object containing `id` and `password` name/value pairs.
 | `user[id]`       | `string` | **Required**. The id of the Database User.
-| `user[password]` | `string` | **Required**. The *new* password of the Database User.
+| `user[password]` | `string` | **Required**. The *new* password of the Database User. Length must be between 1 and 16 characters. Characters can be of lowercase ascii letters, digits, an underscore, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789_-').
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
