@@ -23,6 +23,38 @@ requests made over plain HTTP are not supported.
 https://api.serverpilot.io/v1
 ```
 
+## HTTP Status Code Summary
+
+**200 OK** - Everything worked as expected.
+
+**400 Bad Request** - We couldn't understand your request. Typically missing a parameter or header.
+
+**401 Unauthorized** - Either no authentication credentials were provided or they are invalid.
+
+**402 Payment Required** - Method is restricted to users on the Coach or Business plan.
+
+**403 Forbidden** - Typically when trying to alter or delete protected resources.
+
+**404 Not Found** - You requested a resource that does not exist.
+
+**409 Conflict** - Typically when trying creating a resource that already exists.
+
+**500 Server Error** - Something unexpected happened on ServerPilot's end.
+
+
+### Errors
+
+When you a receive a response with a status code in the 4xx or 5xx range, you'll receive a JSON object in the body with details. The object will have a `error` and `message` key, like so:
+
+```
+{
+    "error": {
+        "message": "Password must be at least 8 characters."
+    }
+}
+```
+
+
 # Resources & Methods
 
 **Servers**
