@@ -75,7 +75,7 @@ Servers will have a `serverpilot` System User.
 
 ```
 $ curl https://api.serverpilot.io/v1/servers \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -110,7 +110,7 @@ $ curl https://api.serverpilot.io/v1/servers \
 
 ```
 $ curl https://api.serverpilot.io/v1/servers \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
    -d '{"name": "www2"}'
 ```
@@ -137,7 +137,7 @@ $ curl https://api.serverpilot.io/v1/servers \
 
 ```
 $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
 ```
 
 ```json
@@ -160,7 +160,7 @@ $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
 
 ```
 $ curl https://api.serverpilot.io/v1/servers/4zGDDO2xg30yEeum \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -X DELETE
 ```
 
@@ -180,7 +180,7 @@ $ curl https://api.serverpilot.io/v1/servers/4zGDDO2xg30yEeum \
 
 ```
 $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -d '{"firewall": false}'
 ```
 
@@ -225,7 +225,7 @@ Under the System User's home directory are additional directories:
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -255,7 +255,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
    -d '{"serverid": "FqHWrrcUfRI18F0l", "name": "derek", "password": "hlZkUk"}'
 ```
@@ -277,7 +277,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -299,7 +299,7 @@ associated.
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -X DELETE
 ```
 
@@ -320,7 +320,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -d '{"password": "mRak7S"}'
 ```
 
@@ -363,7 +363,7 @@ do this where you currently manage DNS for your domain.
 
 ```
 $ curl https://api.serverpilot.io/v1/apps \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -406,7 +406,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 
 ```
 $ curl https://api.serverpilot.io/v1/apps \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
    -d '{"name": "gallery", "sysuserid": "RvnwAIfuENyjUVnl", "domains": ["myartgallery.com", "www.myartgallery.com"]}'
 ```
@@ -432,7 +432,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -455,7 +455,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/B1w7yc1tfUPQLIKS \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -X DELETE
 ```
 
@@ -477,7 +477,7 @@ $ curl https://api.serverpilot.io/v1/apps/B1w7yc1tfUPQLIKS \
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -d '{"runtime": "php5.5"}'
 ```
 
@@ -508,7 +508,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
    -d '{"key": "-----BEGIN PRIVATE KEY-----", "cert": "-----BEGIN CERTIFICATE-----", "cacerts": "-----BEGIN CERTIFICATE-----"}'
 ```
@@ -530,7 +530,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -X DELETE
 ```
 
@@ -552,7 +552,7 @@ There is only one Database User for each Database.
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -584,7 +584,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
    -d '{"appid": "nlcN0TwdZAyNEgdp", "name": "gallerydb", "user": {"name": "arturo", "password": "8apNPT"}}'
 ```
@@ -611,7 +611,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
@@ -635,7 +635,7 @@ $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -X DELETE
 ```
 
@@ -657,7 +657,7 @@ $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
-   -u {CLIENTID}:{APIKEY} \
+   -u $CLIENTID:$APIKEY \
    -d '{"user": {"id": "k2HWtU33mpUsfOdA", "password": "8aTWa7"}}'
 ```
 
@@ -699,7 +699,7 @@ JSON response. The `actionid` can be used to track the `status` of the Action.
 
 ```
 $ curl https://api.serverpilot.io/v1/actions/g3kiiYzxPgAjbwcY \
-   -u {CLIENTID}:{APIKEY}
+   -u $CLIENTID:$APIKEY
 ```
 
 ```json
