@@ -60,7 +60,7 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 **Servers**
 
   * [List all Servers](#list-all-servers)
-  * [Create a Server](#create-a-server)
+  * [Connect a new Server](#connect-a-new-server)
   * [Retrieve an existing Server](#retrieve-an-existing-server)
   * [Delete a Server](#delete-a-server)
   * [Update a Server](#update-a-server)
@@ -133,7 +133,31 @@ $ curl https://api.serverpilot.io/v1/servers \
 }
 ```
 
-### Create a Server
+### Connect a new Server
+
+Use this method to tell ServerPilot that you expect to connect a new Ubuntu
+12.04 or 14.04 server.
+
+Once you have the `id` and `apikey`, you'll need to:
+
+  * download `serverpilot-installer.py` and
+  * run the script with the values specific to your server.
+
+If you were to manually login to your server and do this, it would look like:
+
+```
+$ export SERVERID=JvFFIQn2WV8VHDsP
+$ export SERVERAPIKEY=4lW87naDckYJq1carYffSAwBISa0wfVp5TYh3m3fQSA
+$ (test -e /usr/bin/wget || (sudo apt-get update && sudo apt-get -y install wget)) && \
+  sudo wget -nv -O serverpilot-installer.py https://download.serverpilot.io/serverpilot-installer.py && \
+  sudo python serverpilot-installer.py \
+    --server-id=$SERVERID \
+    --server-apikey=$SERVERAPIKEY
+```
+
+ServerPilot will install Nginx, Apache, PHP, and MySQL. You can just sit back and relax.
+
+
 ```POST /servers```
 
 | Name   | Type     | Description

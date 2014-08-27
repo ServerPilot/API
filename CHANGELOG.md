@@ -1,5 +1,10 @@
 # Changelog
 
+## 8-26-2014
+
+  - Tried to define more clearly what the steps are to connecting a new server
+    to ServerPilot.
+
 ## 8-22-2014
 
   - Reformatted curl commands to appear to use environment variables. Replace
