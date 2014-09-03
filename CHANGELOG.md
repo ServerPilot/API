@@ -1,5 +1,9 @@
 # Changelog
 
+## 9-3-2014
+
+  - Add references to PHP 5.6
+
 ## 8-26-2014
 
   - Tried to define more clearly what the steps are to connecting a new server
