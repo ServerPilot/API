@@ -396,7 +396,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
 
 Apps are your web applications. Sometimes people call apps "websites".
 
-ServerPilot currently supports PHP 5.4 and 5.5 apps.
+ServerPilot currently supports PHP 5.4, 5.5 and 5.6 apps.
 
 ServerPilot configures your servers with Nginx as the public-facing webserver.
 Nginx serves static files and all other requests are proxied to Apache 2.4 so
