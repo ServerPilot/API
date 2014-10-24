@@ -1,4 +1,4 @@
-# ServerPilot Core API v1.0
+# ServerPilot API v1.0
 
 The ServerPilot API is RESTful and allows you to manage ServerPilot resources
 using HTTP requests. All responses return JSON objects, including errors.
