@@ -635,7 +635,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 | `appid`          | `string` | **Required**. The id of the App.
 | `name`           | `string` | **Required**. The name of the database. Length must be between 3 and 64 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-').
 | `user`           | `object` | **Required**. A JSON object containing `name` and `password` name/value pairs.
-| `user[name]`     | `string` | **Required**. The name of the Database User.
+| `user[name]`     | `string` | **Required**. The name of the Database User. Length must be at most 16 characters.
 | `user[password]` | `string` | **Required**. The password of the Database User.
 
 ```
