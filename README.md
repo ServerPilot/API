@@ -97,7 +97,8 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
 ## Servers
 
-Servers are Ubuntu 12.04 or 14.04 machines that are managed by ServerPilot.
+Servers are 64-bit Ubuntu LTS systems, such Ubuntu 14.04, that are managed by
+ServerPilot.
 
 Every App, Database, and System User is related to a Server. By default, all
 Servers will have a `serverpilot` System User.
@@ -135,15 +136,14 @@ $ curl https://api.serverpilot.io/v1/servers \
 
 ### Connect a new Server
 
-Use this method to tell ServerPilot that you expect to connect a new Ubuntu
-12.04 or 14.04 server.
+Use this method to tell ServerPilot that you plan to connect a new server.
 
 Once you have the `id` and `apikey`, you'll need to:
 
   * download `serverpilot-installer.py` and
   * run the script with the values specific to your server.
 
-If you were to manually login to your server and do this, it would look like:
+If you were to manually log in to your server and do this, it would look like:
 
 ```
 $ export SERVERID=JvFFIQn2WV8VHDsP
@@ -161,7 +161,7 @@ ServerPilot will install Nginx, Apache, PHP, and MySQL. You can just sit back an
 ```POST /servers```
 
 | Name   | Type     | Description
-| ------ | :------: | :---------------------------------------:
+| ------ | :------: | :---------------------------------------
 | `name` | `string` | **Required**. The nickname of the Server. Length must be between 1 and 255 characters. Characters can be of lowercase ascii letters, digits, a period, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter and end with either a lowercase ascii letter or digit. `www.store2` is a valid name, while `.org.company` nor `www.blog-` are.
 
 ```
@@ -396,7 +396,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
 
 Apps are your web applications. Sometimes people call apps "websites".
 
-ServerPilot currently supports PHP 5.4, 5.5 and 5.6 apps.
+ServerPilot currently supports PHP 5.4, 5.5, 5.6, and 7.0 apps.
 
 ServerPilot configures your servers with Nginx as the public-facing webserver.
 Nginx serves static files and all other requests are proxied to Apache 2.4 so
@@ -432,7 +432,7 @@ $ curl https://api.serverpilot.io/v1/apps \
     "domains": ["www.myblog.com", "blog.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.4",
+    "runtime": "php7.0",
   },
   {
     "id": "B1w7yc1tfUPQLIKS",
@@ -445,7 +445,7 @@ $ curl https://api.serverpilot.io/v1/apps \
       "cacerts": "-----BEGIN CERTIFICATE----- ...",
     },
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.4",
+    "runtime": "php7.0",
   }]
 }
 ```
@@ -457,7 +457,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 | ----------- | :------------: | :---------------------------------------
 | `name`      | `string`       | **Required**. The nickname of the App. Length must be between 3 and 30 characters. Characters can be of lowercase ascii letters and digits.
 | `sysuserid` | `string`       | **Required**. The System User that will "own" this App. Since every System User is specific to a Server, this implicitly determines on which Server the App will be created.
-| `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4`, `php5.5`, or `php5.6`.
+| `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, or `php7.0`.
 | `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
 
 ```
@@ -478,7 +478,7 @@ $ curl https://api.serverpilot.io/v1/apps \
     "domains": ["www.myartgallery.com", "myartgallery.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.4",
+    "runtime": "php7.0",
   }
 }
 ```
@@ -501,7 +501,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "domains": ["www.myartgallery.com", "myartgallery.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.4",
+    "runtime": "php7.0",
   }
 }
 ```
@@ -528,13 +528,13 @@ $ curl https://api.serverpilot.io/v1/apps/B1w7yc1tfUPQLIKS \
 
 | Name      | Type           | Description
 | --------- | :------------: | :---------------------------------------
-| `runtime` | `string`       | The PHP runtime for an App. Choose from `php5.4`, `php5.5`, or `php5.6`.
+| `runtime` | `string`       | The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, or `php7.0`.
 | `domains` | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
 
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
    -u $CLIENTID:$APIKEY \
-   -d '{"runtime": "php5.5"}'
+   -d '{"runtime": "php5.6"}'
 ```
 
 ```json
@@ -548,7 +548,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "domains": ["www.myartgallery.com", "myartgallery.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.5",
+    "runtime": "php5.6",
   }
 }
 ```
@@ -740,7 +740,8 @@ Actions are a record of work done on ServerPilot resources. These can be things
 like the creation of an App, deploying SSL, deleting an old Database, etc.
 
 All methods that modify a resource will have an `actionid` top-level key in the
-JSON response. The `actionid` can be used to track the `status` of the Action.
+JSON response if any server configuration was required. The `actionid` can be
+used to track the `status` of the Action.
 
 **Possible values of Action `status`**
 
