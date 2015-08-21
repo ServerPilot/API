@@ -97,7 +97,8 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
 ## Servers
 
-Servers are Ubuntu 12.04 or 14.04 machines that are managed by ServerPilot.
+Servers are 64-bit Ubuntu LTS systems, such Ubuntu 14.04, that are managed by
+ServerPilot.
 
 Every App, Database, and System User is related to a Server. By default, all
 Servers will have a `serverpilot` System User.
@@ -135,15 +136,14 @@ $ curl https://api.serverpilot.io/v1/servers \
 
 ### Connect a new Server
 
-Use this method to tell ServerPilot that you expect to connect a new Ubuntu
-12.04 or 14.04 server.
+Use this method to tell ServerPilot that you plan to connect a new server.
 
 Once you have the `id` and `apikey`, you'll need to:
 
   * download `serverpilot-installer.py` and
   * run the script with the values specific to your server.
 
-If you were to manually login to your server and do this, it would look like:
+If you were to manually log in to your server and do this, it would look like:
 
 ```
 $ export SERVERID=JvFFIQn2WV8VHDsP
