@@ -740,7 +740,8 @@ Actions are a record of work done on ServerPilot resources. These can be things
 like the creation of an App, deploying SSL, deleting an old Database, etc.
 
 All methods that modify a resource will have an `actionid` top-level key in the
-JSON response. The `actionid` can be used to track the `status` of the Action.
+JSON response if any server configuration was required. The `actionid` can be
+used to track the `status` of the Action.
 
 **Possible values of Action `status`**
 
