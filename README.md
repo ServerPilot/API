@@ -161,7 +161,7 @@ ServerPilot will install Nginx, Apache, PHP, and MySQL. You can just sit back an
 ```POST /servers```
 
 | Name   | Type     | Description
-| ------ | :------: | :---------------------------------------:
+| ------ | :------: | :---------------------------------------
 | `name` | `string` | **Required**. The nickname of the Server. Length must be between 1 and 255 characters. Characters can be of lowercase ascii letters, digits, a period, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter and end with either a lowercase ascii letter or digit. `www.store2` is a valid name, while `.org.company` nor `www.blog-` are.
 
 ```
