@@ -464,7 +464,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 $ curl https://api.serverpilot.io/v1/apps \
    -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
-   -d '{"name": "gallery", "sysuserid": "RvnwAIfuENyjUVnl", "domains": ["myartgallery.com", "www.myartgallery.com"]}'
+   -d '{"name": "gallery", "sysuserid": "RvnwAIfuENyjUVnl", "runtime": "php7.0", "domains": ["example.com", "www.example.com"]}'
 ```
 
 ```json
@@ -475,7 +475,7 @@ $ curl https://api.serverpilot.io/v1/apps \
     "id": "nlcN0TwdZAyNEgdp",
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
-    "domains": ["www.myartgallery.com", "myartgallery.com"],
+    "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
     "runtime": "php7.0",
@@ -498,7 +498,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "id": "nlcN0TwdZAyNEgdp",
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
-    "domains": ["www.myartgallery.com", "myartgallery.com"],
+    "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
     "runtime": "php7.0",
@@ -545,7 +545,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "id": "nlcN0TwdZAyNEgdp",
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
-    "domains": ["www.myartgallery.com", "myartgallery.com"],
+    "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
     "runtime": "php5.6",
