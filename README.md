@@ -399,9 +399,8 @@ Apps are your web applications. Sometimes people call apps "websites".
 ServerPilot currently supports PHP 5.4, 5.5, 5.6, and 7.0 apps.
 
 ServerPilot configures your servers with Nginx as the public-facing webserver.
-Nginx serves static files and all other requests are proxied to Apache 2.4 so
-that you can use .htaccess files. PHP is configured to run via FPM. Each app
-can have multiple MySQL databases.
+All requests are proxied to Apache 2.4 so your apps can use .htaccess files.
+PHP is configured to run via FPM. Each app can have multiple MySQL databases.
 
 The web root directory for each app is:
 
