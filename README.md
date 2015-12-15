@@ -59,37 +59,37 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
 **Servers**
 
-  * [List all Servers](#list-all-servers)
-  * [Connect a new Server](#connect-a-new-server)
-  * [Retrieve an existing Server](#retrieve-an-existing-server)
+  * [List All Servers](#list-all-servers)
+  * [Connect a New Server](#connect-a-new-server)
+  * [Retrieve an Existing Server](#retrieve-an-existing-server)
   * [Delete a Server](#delete-a-server)
   * [Update a Server](#update-a-server)
 
 **System Users**
 
-  * [List all System Users](#list-all-system-users)
+  * [List All System Users](#list-all-system-users)
   * [Create a System User](#create-a-system-user)
-  * [Retrieve an existing System User](#retrieve-an-existing-system-user)
+  * [Retrieve an Existing System User](#retrieve-an-existing-system-user)
   * [Delete a System User](#delete-a-system-user)
   * [Update a System User](#update-a-system-user)
 
 **Apps**
 
-  * [List all Apps](#list-all-apps)
+  * [List All Apps](#list-all-apps)
   * [Create an App](#create-an-app)
-  * [Retrieve an existing App](#retrieve-an-existing-app)
+  * [Retrieve an Existing App](#retrieve-an-existing-app)
   * [Delete an App](#delete-an-app)
   * [Update an App](#update-an-app)
-  * [Add a SSL Cert](#add-a-ssl-cert)
-  * [Delete SSL for an App](#delete-ssl-for-an-app)
+  * [Add an SSL Cert](#add-an-ssl-cert)
+  * [Delete SSL from an App](#delete-ssl-from-an-app)
 
 **Databases**
 
-  * [List all Databases](#list-all-databases)
+  * [List All Databases](#list-all-databases)
   * [Create a Database](#create-a-database)
-  * [Retrieve an existing Database](#retrieve-an-existing-database)
+  * [Retrieve an Existing Database](#retrieve-an-existing-database)
   * [Delete a Database](#delete-a-database)
-  * [Update the Database User Password](#update-the-database-user-password)
+  * [Update a Database User Password](#update-a-database-user-password)
 
 **Actions**
 
@@ -103,7 +103,7 @@ ServerPilot.
 Every App, Database, and System User is related to a Server. By default, all
 Servers will have a `serverpilot` System User.
 
-### List all Servers
+### List All Servers
 ```GET /servers```
 
 ```
@@ -134,7 +134,7 @@ $ curl https://api.serverpilot.io/v1/servers \
 }
 ```
 
-### Connect a new Server
+### Connect a New Server
 
 Use this method to tell ServerPilot that you plan to connect a new server.
 
@@ -188,7 +188,7 @@ $ curl https://api.serverpilot.io/v1/servers \
 }
 ```
 
-### Retrieve an existing Server
+### Retrieve an Existing Server
 ```GET /servers/:id```
 
 ```
@@ -276,7 +276,7 @@ Under the System User's home directory are additional directories:
   * `apps` — each app has its own directory under here.
   * `log` — each app has its log files here.
 
-### List all System Users
+### List All System Users
 ```GET /sysusers```
 
 ```
@@ -328,7 +328,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 }
 ```
 
-### Retrieve an existing System User
+### Retrieve an Existing System User
 ```GET /sysusers/:id```
 
 ```
@@ -413,7 +413,7 @@ by their domain name, you must make the appropriate changes in your domain's
 DNS zone so that your domain name resolves to your server's IP address. You can
 do this where you currently manage DNS for your domain.
 
-### List all Apps
+### List All Apps
 ```GET /apps```
 
 ```
@@ -482,7 +482,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 }
 ```
 
-### Retrieve an existing App
+### Retrieve an Existing App
 ```GET /apps/:id```
 
 ```
@@ -552,7 +552,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 }
 ```
 
-### Add a SSL Cert
+### Add an SSL Cert
 ```POST /apps/:id/ssl```
 
 | Name      | Type     | Description
@@ -580,7 +580,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
 }
 ```
 
-### Delete SSL for an App
+### Delete SSL from an App
 ```DELETE /apps/:id/ssl```
 
 ```
@@ -602,7 +602,7 @@ Databases are MySQL databases. Each Database is associated with an App.
 
 There is only one Database User for each Database.
 
-### List all Databases
+### List All Databases
 ```GET /dbs```
 
 ```
@@ -661,7 +661,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 }
 ```
 
-### Retrieve an existing Database
+### Retrieve an Existing Database
 ```GET /dbs/:id```
 
 ```
