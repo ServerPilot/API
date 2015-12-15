@@ -597,7 +597,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 $result = curl_exec($ch);
 curl_close($ch);
 
-print($result);
+echo json_encode(json_decode($result), JSON_PRETTY_PRINT);
 ```
 
 ```json
