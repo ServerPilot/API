@@ -183,7 +183,7 @@ $ curl https://api.serverpilot.io/v1/servers \
     "lastaddress": null,
     "lastconn": null,
     "datecreated": 1403130553,
-    "apikey": "nqXUevYSkpW09YKy7CY7PdnL14Q1HIlAfniJZwzjqNQ",
+    "apikey": "nqXUevYSkpW09YKy7CY7PdnL14Q1HIlAfniJZwzjqNQ"
   }
 }
 ```
@@ -290,12 +290,12 @@ $ curl https://api.serverpilot.io/v1/sysusers \
   {
     "id": "PdmHhsb3fnaZ2r5f",
     "name": "serverpilot",
-    "serverid": "FqHWrrcUfRI18F0l",
+    "serverid": "FqHWrrcUfRI18F0l"
   },
   {
     "id": "RvnwAIfuENyjUVnl",
     "name": "serverpilot",
-    "serverid": "4zGDDO2xg30yEeum",
+    "serverid": "4zGDDO2xg30yEeum"
   }]
 }
 ```
@@ -323,7 +323,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
   {
     "id": "PPkfc1NECzvwiEBI",
     "name": "derek",
-    "serverid": "FqHWrrcUfRI18F0l",
+    "serverid": "FqHWrrcUfRI18F0l"
   }
 }
 ```
@@ -342,7 +342,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
   {
     "id": "PPkfc1NECzvwiEBI",
     "name": "derek",
-    "serverid": "FqHWrrcUfRI18F0l",
+    "serverid": "FqHWrrcUfRI18F0l"
   }
 }
 ```
@@ -387,7 +387,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
   {
     "id": "RvnwAIfuENyjUVnl",
     "name": "serverpilot",
-    "serverid": "4zGDDO2xg30yEeum",
+    "serverid": "4zGDDO2xg30yEeum"
   }
 }
 ```
@@ -431,7 +431,7 @@ $ curl https://api.serverpilot.io/v1/apps \
     "domains": ["www.myblog.com", "blog.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   },
   {
     "id": "B1w7yc1tfUPQLIKS",
@@ -444,7 +444,7 @@ $ curl https://api.serverpilot.io/v1/apps \
       "cacerts": "-----BEGIN CERTIFICATE----- ...",
     },
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   }]
 }
 ```
@@ -477,7 +477,7 @@ $ curl https://api.serverpilot.io/v1/apps \
     "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   }
 }
 ```
@@ -500,7 +500,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   }
 }
 ```
@@ -547,7 +547,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.6",
+    "runtime": "php5.6"
   }
 }
 ```
@@ -575,7 +575,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
   {
     "key": "-----BEGIN PRIVATE KEY----- ...",
     "cert": "-----BEGIN CERTIFICATE----- ...",
-    "cacerts": "-----BEGIN CERTIFICATE----- ...",
+    "cacerts": "-----BEGIN CERTIFICATE----- ..."
   }
 }
 ```
@@ -765,7 +765,7 @@ $ curl https://api.serverpilot.io/v1/actions/g3kiiYzxPgAjbwcY \
     "id": "g3kiiYzxPgAjbwcY",
     "serverid": "4zGDDO2xg30yEeum",
     "status": "success",
-    "datecreated": 1403138066,
+    "datecreated": 1403138066
   }
 }
 ```
