@@ -569,11 +569,11 @@ $apikey = "YOUR_APIKEY";
 $appid = "YOUR_APPID";
 
 $sslkey = "-----BEGIN PRIVATE KEY-----
-...
+...the rest of the key file contents here...
 -----END PRIVATE KEY-----";
 
 $sslcert = "-----BEGIN CERTIFICATE-----
-...
+...the rest of the certificate file contents here...
 -----END CERTIFICATE-----";
 
 $data = array(
