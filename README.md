@@ -93,7 +93,7 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
 **Actions**
 
-  * [Check status of an Action](#check-status-of-an-action)
+  * [Check the Status of an Action](#check-the-status-of-an-action)
 
 ## Servers
 
@@ -750,7 +750,7 @@ used to track the `status` of the Action.
 | `open`    | Action has not completed yet.
 | `error`   | Action has completed but there were errors.
 
-### Check status of Action
+### Check the Status of an Action
 ```GET /actions/:id```
 
 ```
