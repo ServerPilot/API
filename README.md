@@ -59,41 +59,41 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
 **Servers**
 
-  * [List all Servers](#list-all-servers)
-  * [Connect a new Server](#connect-a-new-server)
-  * [Retrieve an existing Server](#retrieve-an-existing-server)
+  * [List All Servers](#list-all-servers)
+  * [Connect a New Server](#connect-a-new-server)
+  * [Retrieve an Existing Server](#retrieve-an-existing-server)
   * [Delete a Server](#delete-a-server)
   * [Update a Server](#update-a-server)
 
 **System Users**
 
-  * [List all System Users](#list-all-system-users)
+  * [List All System Users](#list-all-system-users)
   * [Create a System User](#create-a-system-user)
-  * [Retrieve an existing System User](#retrieve-an-existing-system-user)
+  * [Retrieve an Existing System User](#retrieve-an-existing-system-user)
   * [Delete a System User](#delete-a-system-user)
   * [Update a System User](#update-a-system-user)
 
 **Apps**
 
-  * [List all Apps](#list-all-apps)
+  * [List All Apps](#list-all-apps)
   * [Create an App](#create-an-app)
-  * [Retrieve an existing App](#retrieve-an-existing-app)
+  * [Retrieve an Existing App](#retrieve-an-existing-app)
   * [Delete an App](#delete-an-app)
   * [Update an App](#update-an-app)
-  * [Add a SSL Cert](#add-a-ssl-cert)
-  * [Delete SSL for an App](#delete-ssl-for-an-app)
+  * [Add an SSL Cert](#add-an-ssl-cert)
+  * [Delete SSL from an App](#delete-ssl-from-an-app)
 
 **Databases**
 
-  * [List all Databases](#list-all-databases)
+  * [List All Databases](#list-all-databases)
   * [Create a Database](#create-a-database)
-  * [Retrieve an existing Database](#retrieve-an-existing-database)
+  * [Retrieve an Existing Database](#retrieve-an-existing-database)
   * [Delete a Database](#delete-a-database)
-  * [Update the Database User Password](#update-the-database-user-password)
+  * [Update a Database User Password](#update-a-database-user-password)
 
 **Actions**
 
-  * [Check status of an Action](#check-status-of-an-action)
+  * [Check the Status of an Action](#check-the-status-of-an-action)
 
 ## Servers
 
@@ -103,7 +103,7 @@ ServerPilot.
 Every App, Database, and System User is related to a Server. By default, all
 Servers will have a `serverpilot` System User.
 
-### List all Servers
+### List All Servers
 ```GET /servers```
 
 ```
@@ -134,7 +134,7 @@ $ curl https://api.serverpilot.io/v1/servers \
 }
 ```
 
-### Connect a new Server
+### Connect a New Server
 
 Use this method to tell ServerPilot that you plan to connect a new server.
 
@@ -183,12 +183,12 @@ $ curl https://api.serverpilot.io/v1/servers \
     "lastaddress": null,
     "lastconn": null,
     "datecreated": 1403130553,
-    "apikey": "nqXUevYSkpW09YKy7CY7PdnL14Q1HIlAfniJZwzjqNQ",
+    "apikey": "nqXUevYSkpW09YKy7CY7PdnL14Q1HIlAfniJZwzjqNQ"
   }
 }
 ```
 
-### Retrieve an existing Server
+### Retrieve an Existing Server
 ```GET /servers/:id```
 
 ```
@@ -276,7 +276,7 @@ Under the System User's home directory are additional directories:
   * `apps` — each app has its own directory under here.
   * `log` — each app has its log files here.
 
-### List all System Users
+### List All System Users
 ```GET /sysusers```
 
 ```
@@ -290,12 +290,12 @@ $ curl https://api.serverpilot.io/v1/sysusers \
   {
     "id": "PdmHhsb3fnaZ2r5f",
     "name": "serverpilot",
-    "serverid": "FqHWrrcUfRI18F0l",
+    "serverid": "FqHWrrcUfRI18F0l"
   },
   {
     "id": "RvnwAIfuENyjUVnl",
     "name": "serverpilot",
-    "serverid": "4zGDDO2xg30yEeum",
+    "serverid": "4zGDDO2xg30yEeum"
   }]
 }
 ```
@@ -323,12 +323,12 @@ $ curl https://api.serverpilot.io/v1/sysusers \
   {
     "id": "PPkfc1NECzvwiEBI",
     "name": "derek",
-    "serverid": "FqHWrrcUfRI18F0l",
+    "serverid": "FqHWrrcUfRI18F0l"
   }
 }
 ```
 
-### Retrieve an existing System User
+### Retrieve an Existing System User
 ```GET /sysusers/:id```
 
 ```
@@ -342,7 +342,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
   {
     "id": "PPkfc1NECzvwiEBI",
     "name": "derek",
-    "serverid": "FqHWrrcUfRI18F0l",
+    "serverid": "FqHWrrcUfRI18F0l"
   }
 }
 ```
@@ -387,7 +387,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
   {
     "id": "RvnwAIfuENyjUVnl",
     "name": "serverpilot",
-    "serverid": "4zGDDO2xg30yEeum",
+    "serverid": "4zGDDO2xg30yEeum"
   }
 }
 ```
@@ -413,7 +413,7 @@ by their domain name, you must make the appropriate changes in your domain's
 DNS zone so that your domain name resolves to your server's IP address. You can
 do this where you currently manage DNS for your domain.
 
-### List all Apps
+### List All Apps
 ```GET /apps```
 
 ```
@@ -431,7 +431,7 @@ $ curl https://api.serverpilot.io/v1/apps \
     "domains": ["www.myblog.com", "blog.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   },
   {
     "id": "B1w7yc1tfUPQLIKS",
@@ -444,7 +444,7 @@ $ curl https://api.serverpilot.io/v1/apps \
       "cacerts": "-----BEGIN CERTIFICATE----- ...",
     },
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   }]
 }
 ```
@@ -477,12 +477,12 @@ $ curl https://api.serverpilot.io/v1/apps \
     "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   }
 }
 ```
 
-### Retrieve an existing App
+### Retrieve an Existing App
 ```GET /apps/:id```
 
 ```
@@ -500,7 +500,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php7.0",
+    "runtime": "php7.0"
   }
 }
 ```
@@ -547,12 +547,12 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "domains": ["www.example.com", "example.com"],
     "ssl": null,
     "serverid": "4zGDDO2xg30yEeum",
-    "runtime": "php5.6",
+    "runtime": "php5.6"
   }
 }
 ```
 
-### Add a SSL Cert
+### Add an SSL Cert
 ```POST /apps/:id/ssl```
 
 | Name      | Type     | Description
@@ -561,11 +561,43 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 | `cert`    | `string` | **Required**. The contents of the certificate.
 | `cacerts` | `string` | **Required**. The contents of the CA certificate(s). If none, `null` is acceptable.
 
-```
-$ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
-   -u $CLIENTID:$APIKEY \
-   -H "Content-Type: application/json" \
-   -d '{"key": "-----BEGIN PRIVATE KEY-----", "cert": "-----BEGIN CERTIFICATE-----", "cacerts": "-----BEGIN CERTIFICATE-----"}'
+```php
+<?php
+$clientid = "YOUR_CLIENTID";
+$apikey = "YOUR_APIKEY";
+
+$appid = "YOUR_APPID";
+
+$sslkey = "-----BEGIN PRIVATE KEY-----
+...the rest of the key file contents here...
+-----END PRIVATE KEY-----";
+
+$sslcert = "-----BEGIN CERTIFICATE-----
+...the rest of the certificate file contents here...
+-----END CERTIFICATE-----";
+
+$data = array(
+    "key" => $sslkey,
+    "cert" => $sslcert,
+    "cacerts" => null
+);
+$data_string = json_encode($data);
+
+$ch = curl_init("https://api.serverpilot.io/v1/apps/$appid/ssl");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($data_string))
+);
+// Uncomment the following line for debugging.
+//curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+$result = curl_exec($ch);
+curl_close($ch);
+
+echo json_encode(json_decode($result), JSON_PRETTY_PRINT);
 ```
 
 ```json
@@ -573,14 +605,14 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
   "actionid": "BzcMNZ9sdBY62vTd",
   "data":
   {
-    "key": "-----BEGIN PRIVATE KEY----- ...",
-    "cert": "-----BEGIN CERTIFICATE----- ...",
-    "cacerts": "-----BEGIN CERTIFICATE----- ...",
+    "key": "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----",
+    "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+    "cacerts": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"
   }
 }
 ```
 
-### Delete SSL for an App
+### Delete SSL from an App
 ```DELETE /apps/:id/ssl```
 
 ```
@@ -602,7 +634,7 @@ Databases are MySQL databases. Each Database is associated with an App.
 
 There is only one Database User for each Database.
 
-### List all Databases
+### List All Databases
 ```GET /dbs```
 
 ```
@@ -661,7 +693,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 }
 ```
 
-### Retrieve an existing Database
+### Retrieve an Existing Database
 ```GET /dbs/:id```
 
 ```
@@ -750,7 +782,7 @@ used to track the `status` of the Action.
 | `open`    | Action has not completed yet.
 | `error`   | Action has completed but there were errors.
 
-### Check status of Action
+### Check the Status of an Action
 ```GET /actions/:id```
 
 ```
@@ -765,7 +797,7 @@ $ curl https://api.serverpilot.io/v1/actions/g3kiiYzxPgAjbwcY \
     "id": "g3kiiYzxPgAjbwcY",
     "serverid": "4zGDDO2xg30yEeum",
     "status": "success",
-    "datecreated": 1403138066,
+    "datecreated": 1403138066
   }
 }
 ```
