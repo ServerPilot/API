@@ -561,21 +561,52 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 | `cert`    | `string` | **Required**. The contents of the certificate.
 | `cacerts` | `string` | **Required**. The contents of the CA certificate(s). If none, `null` is acceptable.
 
-```
-$ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
-   -u $CLIENTID:$APIKEY \
-   -H "Content-Type: application/json" \
-   -d '{"key": "-----BEGIN PRIVATE KEY-----", "cert": "-----BEGIN CERTIFICATE-----", "cacerts": "-----BEGIN CERTIFICATE-----"}'
-```
+```php
+<?php
+$clientid = "YOUR_CLIENTID";
+$apikey = "YOUR_APIKEY";
+
+$appid = "YOUR_APPID";
+
+$sslkey = "-----BEGIN PRIVATE KEY-----
+...
+-----END PRIVATE KEY-----";
+
+$sslcert = "-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----";
+
+$data = array(
+    "key" => $sslkey,
+    "cert" => $sslcert,
+    "cacerts" => null
+);
+$data_string = json_encode($data);
+
+$ch = curl_init("https://api.serverpilot.io/v1/apps/$appid/ssl");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($data_string))
+);
+// Uncomment the following line for debugging.
+//curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+$result = curl_exec($ch);
+curl_close($ch);
+
+print($result);```
 
 ```json
 {
   "actionid": "BzcMNZ9sdBY62vTd",
   "data":
   {
-    "key": "-----BEGIN PRIVATE KEY----- ...",
-    "cert": "-----BEGIN CERTIFICATE----- ...",
-    "cacerts": "-----BEGIN CERTIFICATE----- ..."
+    "key": "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----",
+    "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+    "cacerts": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"
   }
 }
 ```
