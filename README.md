@@ -458,12 +458,24 @@ $ curl https://api.serverpilot.io/v1/apps \
 | `sysuserid` | `string`       | **Required**. The System User that will "own" this App. Since every System User is specific to a Server, this implicitly determines on which Server the App will be created.
 | `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, or `php7.0`.
 | `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
+| `wordpress`   | `object`       | If present, installs WordPress on the App. Value is a JSON object containing keys `site_title`, `admin_user`, `admin_password`, and `admin_email`, each with values that are strings. The `admin_password` value must be at least 8 characters long.
+
+Creating an App without WordPress:
 
 ```
 $ curl https://api.serverpilot.io/v1/apps \
    -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
    -d '{"name": "gallery", "sysuserid": "RvnwAIfuENyjUVnl", "runtime": "php7.0", "domains": ["example.com", "www.example.com"]}'
+```
+
+Creating an App with WordPress:
+
+```
+$ curl https://api.serverpilot.io/v1/apps \
+   -u $CLIENTID:$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"name": "wordpress", "sysuserid": "RvnwAIfuENyjUVnl", "runtime": "php7.0", "domains": ["example.com", "www.example.com"], "wordpress": {"site_title": "My WordPress Site", "admin_user": "admin", "admin_password": "mypassword", "admin_email": "example@example.com"}}'
 ```
 
 ```json
