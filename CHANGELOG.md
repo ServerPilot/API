@@ -1,5 +1,9 @@
 # Changelog
 
+## 2016-07-29
+
+  - Added PHP 7.1 runtime.
+
 ## 2015-08-21
 
   - Added PHP 7.0 runtime.
