@@ -140,7 +140,7 @@ Use this method to tell ServerPilot that you plan to connect a new server.
 
 Once you have the `id` and `apikey`, you'll need to:
 
-  * download `serverpilot-installer.py` and
+  * download the `serverpilot-installer` script, and
   * run the script with the values specific to your server.
 
 If you were to manually log in to your server and do this, it would look like:
@@ -148,9 +148,9 @@ If you were to manually log in to your server and do this, it would look like:
 ```
 $ export SERVERID=JvFFIQn2WV8VHDsP
 $ export SERVERAPIKEY=4lW87naDckYJq1carYffSAwBISa0wfVp5TYh3m3fQSA
-$ (test -e /usr/bin/wget || (sudo apt-get update && sudo apt-get -y install wget)) && \
-  sudo wget -nv -O serverpilot-installer.py https://download.serverpilot.io/serverpilot-installer.py && \
-  sudo python serverpilot-installer.py \
+$ sudo apt-get update && sudo apt-get -y install wget ca-certificates && \
+  sudo wget -nv -O serverpilot-installer https://download.serverpilot.io/serverpilot-installer && \
+  sudo sh serverpilot-installer \
     --server-id=$SERVERID \
     --server-apikey=$SERVERAPIKEY
 ```
