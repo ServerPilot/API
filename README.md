@@ -77,11 +77,13 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
   * [List All Apps](#list-all-apps)
   * [Create an App](#create-an-app)
-  * [Retrieve an Existing App](#retrieve-an-existing-app)
+  * [Get Details of an App](#get-details-of-an-app)
   * [Delete an App](#delete-an-app)
   * [Update an App](#update-an-app)
-  * [Add an SSL Cert](#add-an-ssl-cert)
-  * [Delete SSL from an App](#delete-ssl-from-an-app)
+  * [Add a Custom SSL Cert](#add-a-custom-ssl-cert)
+  * [Enable AutoSSL](#enable-autossl)
+  * [Delete a Custom SSL Cert or Disable AutoSSL](#delete-a-custom-ssl-cert-or-disable-autossl)
+  * [Enable or Disable ForceSSL](#enable-or-disable-forcessl)
 
 **Databases**
 
@@ -237,6 +239,7 @@ $ curl https://api.serverpilot.io/v1/servers/4zGDDO2xg30yEeum \
 ```
 $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
    -u $CLIENTID:$APIKEY \
+   -H "Content-Type: application/json" \
    -d '{"firewall": false}'
 ```
 
@@ -377,6 +380,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
 ```
 $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
    -u $CLIENTID:$APIKEY \
+   -H "Content-Type: application/json" \
    -d '{"password": "mRak7S"}'
 ```
 
@@ -442,6 +446,8 @@ $ curl https://api.serverpilot.io/v1/apps \
       "key": "-----BEGIN PRIVATE KEY----- ...",
       "cert": "-----BEGIN CERTIFICATE----- ...",
       "cacerts": "-----BEGIN CERTIFICATE----- ...",
+      "auto": false,
+      "force": false
     },
     "serverid": "4zGDDO2xg30yEeum",
     "runtime": "php7.0"
@@ -494,7 +500,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 }
 ```
 
-### Retrieve an Existing App
+### Get Details of an App
 ```GET /apps/:id```
 
 ```
@@ -509,13 +515,35 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
     "id": "nlcN0TwdZAyNEgdp",
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
-    "domains": ["www.example.com", "example.com"],
-    "ssl": null,
+    "domains": ["www.example.com", "example.com", "foo.com"],
+    "ssl": {
+      "key": "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----",
+      "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+      "cacerts": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+      "auto": false,
+      "force": false
+    },
+    "autossl": {
+      "available": true,
+      "domains": ["www.example.com", "example.com"]
+    },
     "serverid": "4zGDDO2xg30yEeum",
     "runtime": "php7.0"
   }
 }
 ```
+
+The value of `auto` in the `ssl` object indicates whether AutoSSL is currently
+enabled for the app. In the example above, since `auto` is `false` and there is
+an SSL certificate, the SSL certificate is a custom certificate rather than an
+AutoSSL certificate.
+
+To know whether AutoSSL is available for an app, use the `autossl` key. The
+`autossl` key will only exist when the account is on a paid plan. If the value
+of `available` is `true`, there will also be a `domains` key with a list of the
+domains in the currently available AutoSSL certificate. Note that the `autossl`
+key is only available through this app details API, not through the
+[apps list API](#list-all-apps) that lists all apps of the account.
 
 ### Delete an App
 ```DELETE /apps/:id```
@@ -545,6 +573,7 @@ $ curl https://api.serverpilot.io/v1/apps/B1w7yc1tfUPQLIKS \
 ```
 $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
    -u $CLIENTID:$APIKEY \
+   -H "Content-Type: application/json" \
    -d '{"runtime": "php5.6"}'
 ```
 
@@ -564,8 +593,12 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
 }
 ```
 
-### Add an SSL Cert
+### Add a Custom SSL Cert
 ```POST /apps/:id/ssl```
+
+A custom SSL cert cannot be added to an app that is using AutoSSL. To replace
+AutoSSL with a custom SSL certificate, you must first disable AutoSSL on the
+app before adding the custom SSL certificate.
 
 | Name      | Type     | Description
 | --------- | :------: | :---------------------------------------
@@ -624,7 +657,46 @@ echo json_encode(json_decode($result), JSON_PRETTY_PRINT);
 }
 ```
 
-### Delete SSL from an App
+### Enable AutoSSL
+```POST /apps/:id/ssl```
+
+AutoSSL can only be enabled when an AutoSSL certificate is available for an
+app. To determine if an AutoSSL certificate is available for an app, use the
+[app details API call](#get-details-of-an-app).
+
+Additionally, AutoSSL cannot be enabled when an app currently has a custom SSL
+certificate. To enable AutoSSL when an app is already using a custom SSL, first
+[delete the app's custom SSL certificate](#delete-a-custom-ssl-cert-or-disable-autossl).
+
+Note that disabling AutoSSL is not done through this API call but instead is
+done by [deleting SSL from the app](#delete-a-custom-ssl-cert-or-disable-autossl).
+
+| Name      | Type           | Description
+| --------- | :------------: | :---------------------------------------
+| `auto`    | `bool`         | Value must be `true`.
+
+```
+$ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
+   -u $CLIENTID:$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"auto": true}'
+```
+
+```json
+{
+  "actionid": "pneQJGaAwIyIojW8",
+  "data":
+  {
+    "key": "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----",
+    "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+    "cacerts": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+    "auto": true,
+    "force": false
+  }
+}
+```
+
+### Delete a Custom SSL Cert or Disable AutoSSL
 ```DELETE /apps/:id/ssl```
 
 ```
@@ -637,6 +709,42 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
 {
   "actionid": "I1nUHIUR0yzBLESI",
   "data": {}
+}
+```
+
+### Enable or Disable ForceSSL
+```POST /apps/:id/ssl```
+
+ForceSSL can only be enabled when an app already has SSL enabled.
+
+You cannot enable ForceSSL at the same time as adding a custom SSL certificate
+or enabling AutoSSL. You must make a separate API call to enable or disable
+ForceSSL.
+
+ForceSSL will be automatically disabled if SSL is deleted from an app.
+
+| Name      | Type           | Description
+| --------- | :------------: | :---------------------------------------
+| `force`   | `bool`         | Whether forced redirection from HTTP to HTTPS is enabled.
+
+```
+$ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp/ssl \
+   -u $CLIENTID:$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"force": true}'
+```
+
+```json
+{
+  "actionid": "S8zEaeSMrD5gSt9A",
+  "data":
+  {
+    "key": "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----",
+    "cert": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+    "cacerts": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+    "auto": false,
+    "force": true
+  }
 }
 ```
 

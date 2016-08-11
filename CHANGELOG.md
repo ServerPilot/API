@@ -1,5 +1,9 @@
 # Changelog
 
+## 2016-08-11
+
+  - Added AutoSSL and ForceSSL management.
+
 ## 2016-07-29
 
   - Added PHP 7.1 runtime.
