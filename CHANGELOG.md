@@ -1,5 +1,9 @@
 # Changelog
 
+## 2016-08-23
+
+  - Passwords cannot be longer than 200 characters.
+
 ## 2016-08-11
 
   - Added AutoSSL and ForceSSL management.
