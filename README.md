@@ -310,7 +310,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 | ---------- | :------: | :---------------------------------------
 | `serverid` | `string` | **Required**. The id of the Server.
 | `name`     | `string` | **Required**. The name of the System User. Length must be between 3 and 32 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter. `user-32` is a valid name, while `3po` is not.
-| `password` | `string` | The password of the System User. If user has no password, they will not be able to log in. No leading or trailing whitespace is allowed and the password must be at least 8 characters long.
+| `password` | `string` | The password of the System User. If user has no password, they will not be able to log in with a password. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers \
@@ -375,7 +375,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
 
 | Name       | Type     | Description
 | ---------- | :------: | :----------
-| `password` | `string` | **Required**. The new password of the System User. If user has no password, they will not be able to log in. No leading or trailing whitespace is allowed and the password must be at least 8 characters long.
+| `password` | `string` | **Required**. The new password of the System User. If user has no password, they will not be able to log in with a password. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
@@ -464,7 +464,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 | `sysuserid` | `string`       | **Required**. The System User that will "own" this App. Since every System User is specific to a Server, this implicitly determines on which Server the App will be created.
 | `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, `php7.0`, or `php7.1`.
 | `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
-| `wordpress`   | `object`       | If present, installs WordPress on the App. Value is a JSON object containing keys `site_title`, `admin_user`, `admin_password`, and `admin_email`, each with values that are strings. The `admin_password` value must be at least 8 characters long.
+| `wordpress`   | `object`       | If present, installs WordPress on the App. Value is a JSON object containing keys `site_title`, `admin_user`, `admin_password`, and `admin_email`, each with values that are strings. The `admin_password` value must be at least 8 and no more than 200 characters long.
 
 Creating an App without WordPress:
 
@@ -787,7 +787,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 | `name`           | `string` | **Required**. The name of the database. Length must be between 3 and 64 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-').
 | `user`           | `object` | **Required**. A JSON object containing `name` and `password` name/value pairs.
 | `user[name]`     | `string` | **Required**. The name of the Database User. Length must be at most 16 characters.
-| `user[password]` | `string` | **Required**. The password of the Database User.
+| `user[password]` | `string` | **Required**. The password of the Database User. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs \
@@ -860,7 +860,7 @@ $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
 | ---------------- | :------: | :----------
 | `user`           | `object` | **Required**. A JSON object containing `id` and `password` name/value pairs.
 | `user[id]`       | `string` | **Required**. The id of the Database User.
-| `user[password]` | `string` | **Required**. The *new* password of the Database User. Length must be between 1 and 16 characters. Characters can be of lowercase ascii letters, digits, an underscore, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789_-').
+| `user[password]` | `string` | **Required**. The *new* password of the Database User. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
 
 ```
 $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
