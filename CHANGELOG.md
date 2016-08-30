@@ -1,5 +1,9 @@
 # Changelog
 
+## 2016-08-30
+
+  - Add `datecreated` field to app information in responses.
+
 ## 2016-08-23
 
   - Passwords cannot be longer than 200 characters.

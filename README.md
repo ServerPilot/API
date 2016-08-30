@@ -430,6 +430,7 @@ $ curl https://api.serverpilot.io/v1/apps \
   "data": [
   {
     "id": "c77JD4gZooGjrF8K",
+    "datecreated": 1403139066,
     "name": "blog",
     "sysuserid": "RvnwAIfuENyjUVnl",
     "domains": ["www.myblog.com", "blog.com"],
@@ -439,6 +440,7 @@ $ curl https://api.serverpilot.io/v1/apps \
   },
   {
     "id": "B1w7yc1tfUPQLIKS",
+    "datecreated": 1403143012,
     "name": "store",
     "sysuserid": "RvnwAIfuENyjUVnl",
     "domains": ["www.mystore.com", "mystore.com"],
@@ -490,6 +492,7 @@ $ curl https://api.serverpilot.io/v1/apps \
   "data":
   {
     "id": "nlcN0TwdZAyNEgdp",
+    "datecreated": 1403143012,
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
     "domains": ["www.example.com", "example.com"],
@@ -513,6 +516,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
   "data":
   {
     "id": "nlcN0TwdZAyNEgdp",
+    "datecreated": 1403143012,
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
     "domains": ["www.example.com", "example.com", "foo.com"],
@@ -583,6 +587,7 @@ $ curl https://api.serverpilot.io/v1/apps/nlcN0TwdZAyNEgdp \
   "data":
   {
     "id": "nlcN0TwdZAyNEgdp",
+    "datecreated": 1403143012,
     "name": "gallery",
     "sysuserid": "RvnwAIfuENyjUVnl",
     "domains": ["www.example.com", "example.com"],
