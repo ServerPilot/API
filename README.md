@@ -634,6 +634,8 @@ $data = array(
 $data_string = json_encode($data);
 
 $ch = curl_init("https://api.serverpilot.io/v1/apps/$appid/ssl");
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($ch, CURLOPT_USERPWD, "$clientid:$apikey");
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
