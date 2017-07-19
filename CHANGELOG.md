@@ -1,8 +1,12 @@
 # Changelog
 
+## 2017-07-19
+
+  - Added server `deny_unknown_domains` field.
+
 ## 2016-08-30
 
-  - Add `datecreated` field to app information in responses.
+  - Added `datecreated` field to app information in responses.
 
 ## 2016-08-23
 
@@ -23,7 +27,7 @@
 
 ## 2014-09-03
 
-  - Add references to PHP 5.6
+  - Added references to PHP 5.6
 
 ## 2014-08-26
 
