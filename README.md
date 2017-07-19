@@ -121,14 +121,16 @@ $ curl https://api.serverpilot.io/v1/servers \
     "name": "www1",
     "autoupdates": true,
     "firewall": true,
+    "deny_unknown_domains": true,
     "lastaddress": "1.2.3.4",
     "lastconn": 1403130552,
     "datecreated": 1403130551
   }, {
     "id": "4zGDDO2xg30yEeum",
-    "name": "vagrant",
+    "name": "www3",
     "autoupdates": true,
     "firewall": true,
+    "deny_unknown_domains": true,
     "lastaddress": "1.2.3.4",
     "lastconn": 1403130554,
     "datecreated": 1403130553
@@ -182,6 +184,7 @@ $ curl https://api.serverpilot.io/v1/servers \
     "name": "www2",
     "autoupdates": true,
     "firewall": true,
+    "deny_unknown_domains": true,
     "lastaddress": null,
     "lastconn": null,
     "datecreated": 1403130553,
@@ -206,6 +209,7 @@ $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
     "name": "www2",
     "autoupdates": true,
     "firewall": true,
+    "deny_unknown_domains": true,
     "lastaddress": "1.2.3.4",
     "lastconn": 1403130554,
     "datecreated": 1403130553
@@ -231,10 +235,11 @@ $ curl https://api.serverpilot.io/v1/servers/4zGDDO2xg30yEeum \
 ### Update a Server
 ```POST /servers/:id```
 
-| Name          | Type     | Description
-| ------------- | :------: | :---------------------------------------
-| `firewall`    | `bool`   | Describes the "enabled" state of the Server firewall. `false` means the firewall is not enabled.
-| `autoupdates` | `bool`   | Describes the "enabled" state of automatic system updates. `false` means automatic system updates are not enabled.
+| Name                   | Type     | Description
+| ---------------------- | :------: | :---------------------------------------
+| `firewall`             | `bool`   | Describes the "enabled" state of the server's firewall. `false` means the firewall is not enabled.
+| `autoupdates`          | `bool`   | Describes the "enabled" state of automatic system updates. `false` means automatic system updates are not enabled.
+| `deny_unknown_domains` | `bool`   | Whether requests for domains not associated with any app are denied (`true`) or are sent to the default app (`false`).
 
 ```
 $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
@@ -252,6 +257,7 @@ $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
     "name": "www2",
     "autoupdates": true,
     "firewall": false,
+    "deny_unknown_domains": true,
     "lastaddress": "1.2.3.4",
     "lastconn": 1403130554,
     "datecreated": 1403130553
