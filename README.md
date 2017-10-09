@@ -54,6 +54,14 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 }
 ```
 
+### Limits
+
+Each server can have at most 1000 system users.
+
+Each system user can have at most 1000 apps.
+
+Each app can have at most 1000 domains and 1000 databases.
+
 
 # Resources & Methods
 
