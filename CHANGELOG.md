@@ -1,5 +1,9 @@
 # Changelog
 
+## 2017-10-09
+
+  - Added PHP 7.2 runtime.
+
 ## 2017-07-19
 
   - Added server `deny_unknown_domains` field.
