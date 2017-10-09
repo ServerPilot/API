@@ -414,7 +414,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
 
 Apps are your web applications. Sometimes people call apps "websites".
 
-ServerPilot currently supports PHP 5.4, 5.5, 5.6, 7.0, and 7.1 apps.
+ServerPilot currently supports PHP 5.4, 5.5, 5.6, 7.0, 7.1, and 7.2 apps.
 
 ServerPilot configures your servers with Nginx as the public-facing webserver.
 All requests are proxied to Apache 2.4 so your apps can use .htaccess files.
@@ -478,7 +478,7 @@ $ curl https://api.serverpilot.io/v1/apps \
 | ----------- | :------------: | :---------------------------------------
 | `name`      | `string`       | **Required**. The nickname of the App. Length must be between 3 and 30 characters. Characters can be of lowercase ascii letters and digits.
 | `sysuserid` | `string`       | **Required**. The System User that will "own" this App. Since every System User is specific to a Server, this implicitly determines on which Server the App will be created.
-| `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, `php7.0`, or `php7.1`.
+| `runtime`   | `string`       | **Required**. The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, `php7.0`, `php7.1`, or `php7.2`.
 | `domains`   | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
 | `wordpress`   | `object`       | If present, installs WordPress on the App. Value is a JSON object containing keys `site_title`, `admin_user`, `admin_password`, and `admin_email`, each with values that are strings. The `admin_password` value must be at least 8 and no more than 200 characters long.
 
@@ -585,7 +585,7 @@ $ curl https://api.serverpilot.io/v1/apps/B1w7yc1tfUPQLIKS \
 
 | Name      | Type           | Description
 | --------- | :------------: | :---------------------------------------
-| `runtime` | `string`       | The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, `php7.0`, or `php7.1`.
+| `runtime` | `string`       | The PHP runtime for an App. Choose from `php5.4`, `php5.5`, `php5.6`, `php7.0`, `php7.1`, or `php7.2`.
 | `domains` | `array`        | An array of domains that will be used in the webserver's configuration. If you set your app's domain name to *example.com*, Nginx and Apache will be configured to listen for both *example.com* and *www.example.com*. **Note**: The complete list of domains must be included in every update to this field.
 
 ```
