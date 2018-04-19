@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-19
+
+  - Added server `available_runtimes` field.
+
 ## 2017-10-09
 
   - Added PHP 7.2 runtime.
