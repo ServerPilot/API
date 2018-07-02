@@ -31,7 +31,7 @@ https://api.serverpilot.io/v1
 
 **401 Unauthorized** - Either no authentication credentials were provided or they are invalid.
 
-**402 Payment Required** - Method is restricted to users on the Coach or Business plan.
+**402 Payment Required** - Account does not have a valid credit card on file.
 
 **403 Forbidden** - Typically when trying to alter or delete protected resources.
 
@@ -127,6 +127,7 @@ $ curl https://api.serverpilot.io/v1/servers \
   {
     "id": "FqHWrrcUfRI18F0l",
     "name": "www1",
+    "plan": "economy",
     "autoupdates": true,
     "firewall": true,
     "deny_unknown_domains": true,
@@ -137,6 +138,7 @@ $ curl https://api.serverpilot.io/v1/servers \
   }, {
     "id": "4zGDDO2xg30yEeum",
     "name": "www3",
+    "plan": "business",
     "autoupdates": true,
     "firewall": true,
     "deny_unknown_domains": true,
@@ -177,6 +179,7 @@ ServerPilot will install Nginx, Apache, PHP, and MySQL. You can just sit back an
 | Name   | Type     | Description
 | ------ | :------: | :---------------------------------------
 | `name` | `string` | **Required**. The nickname of the Server. Length must be between 1 and 255 characters. Characters can be of lowercase ascii letters, digits, a period, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter and end with either a lowercase ascii letter or digit. `www.store2` is a valid name, while `.org.company` nor `www.blog-` are.
+| `plan` | `string` | The plan the server is on. Must be either `economy`, `business`, or `first_class`. If not specified, defaults to `economy`.
 
 ```
 $ curl https://api.serverpilot.io/v1/servers \
@@ -192,6 +195,7 @@ $ curl https://api.serverpilot.io/v1/servers \
   {
     "id": "UXOSIYrdtL4cSGp3",
     "name": "www2",
+    "plan": "economy",
     "autoupdates": true,
     "firewall": true,
     "deny_unknown_domains": true,
@@ -218,6 +222,7 @@ $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
   {
     "id": "UXOSIYrdtL4cSGp3",
     "name": "www2",
+    "plan": "economy",
     "autoupdates": true,
     "firewall": true,
     "deny_unknown_domains": true,
@@ -249,6 +254,7 @@ $ curl https://api.serverpilot.io/v1/servers/4zGDDO2xg30yEeum \
 
 | Name                   | Type     | Description
 | ---------------------- | :------: | :---------------------------------------
+| `plan`                 | `string` | The plan the server is on. Must be either `economy`, `business`, or `first_class`.
 | `firewall`             | `bool`   | Describes the "enabled" state of the server's firewall. `false` means the firewall is not enabled.
 | `autoupdates`          | `bool`   | Describes the "enabled" state of automatic system updates. `false` means automatic system updates are not enabled.
 | `deny_unknown_domains` | `bool`   | Whether requests for domains not associated with any app are denied (`true`) or are sent to the default app (`false`).
@@ -267,6 +273,7 @@ $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
   {
     "id": "UXOSIYrdtL4cSGp3",
     "name": "www2",
+    "plan": "economy",
     "autoupdates": true,
     "firewall": false,
     "deny_unknown_domains": true,
@@ -561,11 +568,10 @@ enabled for the app. In the example above, since `auto` is `false` and there is
 an SSL certificate, the SSL certificate is a custom certificate rather than an
 AutoSSL certificate.
 
-To know whether AutoSSL is available for an app, use the `autossl` key. The
-`autossl` key will only exist when the account is on a paid plan. If the value
-of `available` is `true`, there will also be a `domains` key with a list of the
-domains in the currently available AutoSSL certificate. Note that the `autossl`
-key is only available through this app details API, not through the
+To know whether AutoSSL is available for an app, use the `autossl` key. If the
+value of `available` is `true`, there will also be a `domains` key with a list
+of the domains in the currently available AutoSSL certificate. Note that the
+`autossl` key is only available through this app details API, not through the
 [apps list API](#list-all-apps) that lists all apps of the account.
 
 ### Delete an App
