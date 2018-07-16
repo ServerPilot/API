@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-07-10
+
+  - Added server `plan` field.
+
 ## 2018-04-19
 
   - Added server `available_runtimes` field.
