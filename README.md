@@ -176,10 +176,11 @@ ServerPilot will install Nginx, Apache, PHP, and MySQL. You can just sit back an
 
 ```POST /servers```
 
-| Name   | Type     | Description
-| ------ | :------: | :---------------------------------------
-| `name` | `string` | **Required**. The nickname of the Server. Length must be between 1 and 255 characters. Characters can be of lowercase ascii letters, digits, a period, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter and end with either a lowercase ascii letter or digit. `www.store2` is a valid name, while `.org.company` nor `www.blog-` are.
-| `plan` | `string` | The plan the server is on. Must be either `economy`, `business`, or `first_class`. If not specified, defaults to `economy`.
+| Name                       | Type     | Description
+| ------                     | :------: | :---------------------------------------
+| `name`                     | `string` | **Required**. The nickname of the Server. Length must be between 1 and 255 characters. Characters can be of lowercase ascii letters, digits, a period, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter and end with either a lowercase ascii letter or digit. `www.store2` is a valid name, while `.org.company` nor `www.blog-` are.
+| `plan`                     | `string` | The plan the server is on. Must be either `economy`, `business`, or `first_class`. If not specified, defaults to `economy`.
+| `enable_ssh_password_auth` | `bool`   | If `true`, password authentication for SSH/SFTP logins is enabled when the server is being initially configured by ServerPilot. If `false`, has no effect (does not disable passwored authentication). Defaults to `false`.
 
 ```
 $ curl https://api.serverpilot.io/v1/servers \
