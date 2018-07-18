@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-07-18
+
+  - Added server creation `enable_ssh_password_auth` option.
+
 ## 2018-07-10
 
   - Added server `plan` field.
