@@ -343,7 +343,7 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 $ curl https://api.serverpilot.io/v1/sysusers \
    -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
-   -d '{"serverid": "FqHWrrcUfRI18F0l", "name": "derek", "password": "hlZkUk"}'
+   -d '{"serverid": "FqHWrrcUfRI18F0l", "name": "derek", "password": "ayd1Dl7EG"}'
 ```
 
 ```json
@@ -408,7 +408,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/PPkfc1NECzvwiEBI \
 $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
    -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
-   -d '{"password": "mRak7S"}'
+   -d '{"password": "0rP45Rdbhu"}'
 ```
 
 ```json
@@ -826,7 +826,7 @@ $ curl https://api.serverpilot.io/v1/dbs \
 $ curl https://api.serverpilot.io/v1/dbs \
    -u $CLIENTID:$APIKEY \
    -H "Content-Type: application/json" \
-   -d '{"appid": "nlcN0TwdZAyNEgdp", "name": "gallerydb", "user": {"name": "arturo", "password": "8apNPT"}}'
+   -d '{"appid": "nlcN0TwdZAyNEgdp", "name": "gallerydb", "user": {"name": "arturo", "password": "TaKT42u6w6"}}'
 ```
 
 ```json
@@ -898,7 +898,7 @@ $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
 ```
 $ curl https://api.serverpilot.io/v1/dbs/8PV1OIAlAW3jbGmM \
    -u $CLIENTID:$APIKEY \
-   -d '{"user": {"id": "k2HWtU33mpUsfOdA", "password": "8aTWa7"}}'
+   -d '{"user": {"id": "k2HWtU33mpUsfOdA", "password": "8zHB7nHpyp"}}'
 ```
 
 ```json
