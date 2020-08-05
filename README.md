@@ -56,9 +56,13 @@ When you a receive a response with a status code in the 4xx or 5xx range, you'll
 
 ### Limits
 
+There is no limit to the number of servers on an account.
+
+Each account can have at most 1000 SSH keys.
+
 Each server can have at most 1000 system users.
 
-Each system user can have at most 1000 apps.
+Each system user can have at most 1000 apps and 100 SSH keys.
 
 Each app can have at most 1000 domains and 1000 databases.
 
@@ -73,11 +77,23 @@ Each app can have at most 1000 domains and 1000 databases.
   * [Delete a Server](#delete-a-server)
   * [Update a Server](#update-a-server)
 
+**SSH Keys**
+
+  * [List SSH Keys](#list-ssh-keys)
+  * [Add an SSH Key](#add-an-ssh-key)
+  * [Retrieve an Existing SSH Key](#retrieve-an-existing-ssh-key)
+  * [Rename an SSH Key](#rename-an-ssh-key)
+  * [Delete an SSH Key](#delete-an-ssh-key)
+
 **System Users**
 
   * [List All System Users](#list-all-system-users)
   * [Create a System User](#create-a-system-user)
+  * [Change the Password of a System User](#change-the-password-of-a-system-user)
   * [Retrieve an Existing System User](#retrieve-an-existing-system-user)
+  * [Add an SSH Key to a System User](#add-an-ssh-key-to-a-system-user)
+  * [Remove an SSH Key from a System User](#remove-an-ssh-key-from-a-system-user)
+  * [List SSH Keys of a System User](#list-ssh-keys-of-a-system-user)
   * [Delete a System User](#delete-a-system-user)
   * [Update a System User](#update-a-system-user)
 
@@ -286,6 +302,162 @@ $ curl https://api.serverpilot.io/v1/servers/UXOSIYrdtL4cSGp3 \
 }
 ```
 
+## SSH Keys
+
+SSH Keys are managed account-wide. Once an SSH Key is added to your account,
+it can be assigned to one or more System Users.
+
+### List SSH Keys
+```GET /sshkeys```
+
+```
+$ curl https://api.serverpilot.io/v1/sshkeys \
+   -u $CLIENT_ID:$API_KEY
+```
+
+```json
+{
+  "data": [
+    {
+      "id": "aUAG0Z3p0F3xmc6R",
+      "name": "joe's key",
+      "sha256_fingerprint": "SHA256:...",
+      "public_key": "ssh-rsa ...",
+      "datecreated": 1403139066
+    },
+    {
+      "id": "QecKhpb14kk2a6H3",
+      "name": "jenny's key",
+      "sha256_fingerprint": "SHA256:...",
+      "public_key": "ssh-rsa ...",
+      "datecreated": 1403139067
+    }
+  ]
+}
+```
+
+### Add an SSH Key
+```POST /sshkeys```
+
+The public key must be a string in the format:
+
+    KEY_TYPE PEM_ENCODED_KEY OPTIONAL_COMMENT
+
+This is the same format as the contents of a `.pub` file created with the
+`ssh-keygen` command.
+
+The `KEY_TYPE` must be either `ssh-rsa` or `ssh-ed25519`.
+
+| Name         | Type     | Description
+| ------------ | :------: | :---------------------------------------
+| `name`       | `string` | **Required**. The name of the SSH Key. Length must be between 1 and 50 characters. Characters can be any printable character other than `<`, `>`, and `"`.
+| `public_key` | `string` | **Required**. The public key to add.
+
+```
+$ curl https://api.serverpilot.io/v1/sshkeys \
+   -u $CLIENT_ID:$API_KEY \
+   -H "Content-Type: application/json" \
+   -d '{"name": "joe's key", "public_key": "ssh-rsa ..."}'
+```
+
+```json
+{
+  "data":
+  {
+    "id": "aUAG0Z3p0F3xmc6R",
+    "name": "joe's key",
+    "sha256_fingerprint": "SHA256:...",
+    "public_key": "ssh-rsa ...",
+    "datecreated": 1403139066
+  }
+}
+```
+
+### Retrieve an Existing SSH Key
+```GET /sshkeys/:id```
+
+Returns the SSH Key's details in addition to a list of System Users using this
+SSH Key.
+
+```
+$ curl https://api.serverpilot.io/v1/sshkeys/aUAG0Z3p0F3xmc6R \
+   -u $CLIENT_ID:$API_KEY
+```
+
+```json
+{
+  "data":
+  {
+    "id": "aUAG0Z3p0F3xmc6R",
+    "name": "joe's key",
+    "sha256_fingerprint": "SHA256:...",
+    "public_key": "ssh-rsa ...",
+    "datecreated": 1403139066,
+    "sysusers": [
+      {
+        "id": "PdmHhsb3fnaZ2r5f",
+        "name": "serverpilot",
+        "serverid": "FqHWrrcUfRI18F0l",
+        "datecreated": 1403084618
+      },
+      {
+        "id": "RvnwAIfuENyjUVnl",
+        "name": "serverpilot",
+        "serverid": "FqHWrrcUfRI18F0l",
+        "datecreated": 1402875948
+      }
+    ]
+  }
+}
+```
+
+### Rename an SSH Key
+```POST /sshkeys/:id```
+
+| Name   | Type     | Description
+| ------ | :------: | :----------
+| `name` | `string` | **Required**. The new name of the SSH Key. Length must be between 1 and 50 characters. Characters can be any printable character other than `<`, `>`, and `"`.
+
+```
+$ curl https://api.serverpilot.io/v1/sshkeys/RvnwAIfuENyjUVnl \
+   -u $CLIENT_ID:$API_KEY \
+   -H "Content-Type: application/json" \
+   -d '{"name": "new name for joe's key"}'
+```
+
+```json
+{
+  "data":
+  {
+    "id": "aUAG0Z3p0F3xmc6R",
+    "name": "new name for joe's key",
+    "sha256_fingerprint": "SHA256:...",
+    "public_key": "ssh-rsa ...",
+    "datecreated": 1403139066
+  }
+}
+```
+
+### Delete an SSH Key
+```DELETE /sshkeys/:id```
+
+Delete an SSH Key so that it will no longer be available for assignment to
+System Users.
+
+An SSH Key can't be deleted if it is currently in use by any System Users.
+
+```
+$ curl https://api.serverpilot.io/v1/sshkeys/aUAG0Z3p0F3xmc6R \
+   -u $CLIENT_ID:$API_KEY \
+   -X DELETE
+```
+
+```json
+{
+  "data": {}
+}
+```
+
 ## System Users
 
 System Users are Linux user accounts that ServerPilot creates on your Server.
@@ -333,11 +505,12 @@ $ curl https://api.serverpilot.io/v1/sysusers \
 ### Create a System User
 ```POST /sysusers```
 
-| Name       | Type     | Description
-| ---------- | :------: | :---------------------------------------
-| `serverid` | `string` | **Required**. The id of the Server.
-| `name`     | `string` | **Required**. The name of the System User. Length must be between 3 and 32 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter. `user-32` is a valid name, while `3po` is not.
-| `password` | `string` | The password of the System User. If user has no password, they will not be able to log in with a password. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
+| Name        | Type     | Description
+| ----------- | :------: | :---------------------------------------
+| `serverid`  | `string` | **Required**. The id of the Server.
+| `name`      | `string` | **Required**. The name of the System User. Length must be between 3 and 32 characters. Characters can be of lowercase ascii letters, digits, or a dash ('abcdefghijklmnopqrstuvwxyz0123456789-'), but must start with a lowercase ascii letter. `user-32` is a valid name, while `3po` is not.
+| `password`  | `string` | The password of the System User. If user has no password, they will not be able to SSH/SFTP in with a password. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
+| `sshkey_id` | `string` | The id of an SSH Key to add to the System User. If the user does not have an SSH Key, they will not be able to SSH/SFTP in using public key authentication.
 
 ```
 $ curl https://api.serverpilot.io/v1/sysusers \
@@ -354,6 +527,32 @@ $ curl https://api.serverpilot.io/v1/sysusers \
     "id": "PPkfc1NECzvwiEBI",
     "name": "derek",
     "serverid": "FqHWrrcUfRI18F0l"
+  }
+}
+```
+
+### Change the Password of a System User
+```POST /sysusers/:id```
+
+| Name       | Type     | Description
+| ---------- | :------: | :----------
+| `password` | `string` | **Required**. The new password of the System User. If user has no password, they will not be able to log in with a password. No leading or trailing whitespace is allowed and the password must be at least 8 and no more than 200 characters long.
+
+```
+$ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
+   -u $CLIENT_ID:$API_KEY \
+   -H "Content-Type: application/json" \
+   -d '{"password": "2short"}'
+```
+
+```json
+{
+  "actionid": "OF42xCWkKcaX3qG2",
+  "data":
+  {
+    "id": "RvnwAIfuENyjUVnl",
+    "name": "serverpilot",
+    "serverid": "4zGDDO2xg30yEeum"
   }
 }
 ```
@@ -420,6 +619,72 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
     "name": "serverpilot",
     "serverid": "4zGDDO2xg30yEeum"
   }
+}
+```
+
+### Add an SSH Key to a System User
+```POST /sysusers/:id/sshkeys```
+
+| Name        | Type     | Description
+| ----------- | :------: | :----------
+| `sshkey_id` | `string` | **Required**. The id of the SSH Key to add to this System User.
+
+```
+$ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
+   -u $CLIENT_ID:$API_KEY \
+   -H "Content-Type: application/json" \
+   -d '{"sshkey_id": "aUAG0Z3p0F3xmc6R"}'
+```
+
+```json
+{
+  "actionid": "OF42xCWkKcaX3qG2",
+  "data": {}
+}
+```
+
+### Remove an SSH Key from a System User
+```DELETE /sysusers/:sysuser_id/sshkeys/:sshkey_id```
+
+```
+$ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl/sshkeys/aUAG0Z3p0F3xmc6R \
+   -u $CLIENT_ID:$API_KEY \
+   -X DELETE
+```
+
+```json
+{
+  "actionid": "OF42xCWkKcaX3qG2",
+  "data": {}
+}
+```
+
+### List SSH Keys of a System User
+```GET /sysusers/:id/sshkeys```
+
+```
+$ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl/sshkeys \
+   -u $CLIENT_ID:$API_KEY
+```
+
+```json
+{
+  "data": [
+    {
+      "id": "aUAG0Z3p0F3xmc6R",
+      "name": "joe's key",
+      "sha256_fingerprint": "SHA256:...",
+      "public_key": "ssh-rsa ...",
+      "datecreated": 1403139066
+    },
+    {
+      "id": "QecKhpb14kk2a6H3",
+      "name": "jenny's key",
+      "sha256_fingerprint": "SHA256:...",
+      "public_key": "ssh-rsa ...",
+      "datecreated": 1403139067
+    }
+  ]
 }
 ```
 
