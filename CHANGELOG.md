@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-08-05
+
+  - Added SSH key management.
+
 ## 2018-07-18
 
   - Added server creation `enable_ssh_password_auth` option.
