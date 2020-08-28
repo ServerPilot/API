@@ -630,7 +630,7 @@ $ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
 | `sshkey_id` | `string` | **Required**. The id of the SSH Key to add to this System User.
 
 ```
-$ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl \
+$ curl https://api.serverpilot.io/v1/sysusers/RvnwAIfuENyjUVnl/sshkeys \
    -u $CLIENT_ID:$API_KEY \
    -H "Content-Type: application/json" \
    -d '{"sshkey_id": "aUAG0Z3p0F3xmc6R"}'
