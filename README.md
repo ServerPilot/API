@@ -64,7 +64,7 @@ Each server can have at most 1000 system users.
 
 Each system user can have at most 1000 apps and 100 SSH keys.
 
-Each app can have at most 1000 domains and 1000 databases.
+Each app can have at most 300 domains and 1000 databases.
 
 
 # Resources & Methods
